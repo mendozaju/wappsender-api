@@ -1,6 +1,7 @@
 package com.blue.wappsender.api.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -12,10 +13,13 @@ public class ApiController {
 	
 	@RequestMapping(method=RequestMethod.GET, path="/api")
 	@ResponseBody
-	public String getStatus() {
-		return "OK";
+	public BaseResponse getStatus() {
+		BaseResponse result = new BaseResponse();
+		result.setStatus("OK");
+		return result;
 	}
 	
+	@CrossOrigin
 	@RequestMapping(method=RequestMethod.GET, path="/", produces="application/json; charset=utf-8")
 	@ResponseBody
 	public HealtResponse healtCheck() {

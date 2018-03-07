@@ -1,4 +1,4 @@
-package com.blue.wappsender.api.controller.messages;
+package com.blue.wappsender.api.controller.campaing;
 
 public class CampaingResponse {
 	
