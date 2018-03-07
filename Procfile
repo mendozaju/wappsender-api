@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT $JAVA_OPTS -cp target/classes:target/dependency/* com/blue/wappsender/core/App.java
+web: java -Dserver.port=$PORT -jar wappsender-api/target/wappsender.api-0.0.1-SNAPSHOT.jar
