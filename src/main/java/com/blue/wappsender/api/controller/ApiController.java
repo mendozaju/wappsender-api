@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.blue.wappsender.api.controller.cross.BaseResponse;
 import com.blue.wappsender.api.controller.healt.HealtResponse;
 
 @Controller
@@ -15,7 +16,7 @@ public class ApiController {
 	@ResponseBody
 	public BaseResponse getStatus() {
 		BaseResponse result = new BaseResponse();
-		result.setStatus("OK");
+		result.setCode("OK");
 		return result;
 	}
 	
