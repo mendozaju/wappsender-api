@@ -49,6 +49,11 @@
 						</goals>
 					</execution>
 				</executions>
+				<configuration>
+					<!-- or whatever version you use -->
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
