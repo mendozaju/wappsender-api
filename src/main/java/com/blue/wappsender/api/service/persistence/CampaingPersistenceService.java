@@ -43,7 +43,8 @@ public class CampaingPersistenceService {
 		log.info("Se ejecuta la query:[{}] con los valores: [{}] - [{}] - [{}]", query, campaing.getText(),
 				campaing.getDescription(), campaing.getActivationDate());
 		
-		//TODO: Ver que puede tirar un Runtime, agregar manejador general.		
+		//TODO: Ver que puede tirar un Runtime, agregar manejador general.
+		//TODO: Hay que colocar el userId que corresponde. Cuando se defina la autenticacion
 		int result = this.jdbcTemplate.update(query, campaing.getText(), campaing.getDescription(),
 				campaing.getActivationDate(),1);
 		
