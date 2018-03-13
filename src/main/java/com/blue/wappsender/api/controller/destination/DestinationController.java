@@ -39,12 +39,13 @@ public class DestinationController {
 	@RequestMapping(path="/{campaingId}/destinations", method= RequestMethod.PATCH)
 	public ResponseEntity<BaseResponse> addDestinations(@Valid @RequestBody AddDestinationRequest request, @PathVariable(required=true) String campaingId) {
 		
-		log.info("Se atiende el pedido de adicion de destinos para la campaña:[{}]",campaingId);
-		
-		this.destinationPersistenceService.addDestinationToCampaing(campaingId, request.getDestinations());		
-		
-		
-		
+		log.info("Se atiende el pedido de adicion de destinos para la campaña:[{}]",campaingId);		
+		this.destinationPersistenceService.addDestinationToCampaing(campaingId, request.getDestinations());
+
+		BaseResponse response = new BaseResponse();
+		response.setCode("OK");
+		response.setDescription("Se agrean correctamente los destinos a la campaña");
+			
 		return ResponseEntity.ok(new BaseResponse());
 	}
 	
