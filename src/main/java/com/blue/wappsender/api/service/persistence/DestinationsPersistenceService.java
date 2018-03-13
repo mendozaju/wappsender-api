@@ -44,7 +44,7 @@ public class DestinationsPersistenceService {
 	public int addDestinationToCampaing(String campaingId, ArrayList<String> destinations) {
 
 		StringBuilder queryBuilder = new StringBuilder(
-				"INSERT INTO campaing_destinations (number, campaing_id) VALUES ");
+				"INSERT INTO campaing_destinations (number, campaign_id) VALUES ");
 		ArrayList<String> parameters = new ArrayList<String>();
 
 		Iterator<String> iterator = destinations.iterator();
@@ -72,10 +72,37 @@ public class DestinationsPersistenceService {
 	 * @return
 	 */
 	public ArrayList<Destination> getDestinationsOfCampaign(String campaignId){
-		String query = "SELECT * from campaing_destinations where campaing_id = ?";
+		String query = "SELECT * from campaing_destinations where campaign_id = ?";
 		Object[] params = {campaignId};		
 		
 		List<Destination> result = this.jdbcTemplate.query(query,params,new BeanPropertyRowMapper<Destination>(Destination.class));
+		return (ArrayList<Destination>) result;		
+	}
+	
+	/**
+	 * Retorna los destinos para un array de id de campañas
+	 * @return
+	 */
+	public ArrayList<Destination> getDestinationsOfCampaigns(ArrayList<String> campaignsIds){
+		StringBuilder query = new StringBuilder("SELECT * from campaing_destinations where campaign_id IN ");		
+		
+		ArrayList<String> params = new ArrayList<String>();	
+		query.append("(");
+		
+		Iterator<String> campaignsIT = campaignsIds.iterator();
+		while(campaignsIT.hasNext()) {
+			
+			query.append("?");
+			String id = campaignsIT.next();
+			params.add(id);
+			
+			if(campaignsIT.hasNext()) {
+				query.append(",");
+			}			
+		}
+		query.append(")");	
+		
+		List<Destination> result = this.jdbcTemplate.query(query.toString(),params.toArray(),new BeanPropertyRowMapper<Destination>(Destination.class));
 		return (ArrayList<Destination>) result;		
 	}
 

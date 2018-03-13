@@ -58,10 +58,10 @@ public class CampaingPersistenceService {
 	 * @param userId
 	 * @return
 	 */
-	public ArrayList<Campaign> getCampaigns(String campaignId){
+	public ArrayList<Campaign> getCampaigns(String campaignId, String userId){
 		
-		String query = "SELECT * FROM campaings WHERE id = ?";		
-		Object[] parameters = {campaignId};
+		String query = "SELECT * FROM campaings WHERE id = ? AND user_id = ?";		
+		Object[] parameters = {campaignId, userId};
 		log.info("Se ejecuta la query:[{}] con los valores: [{}] - [{}] - [{}]", query, campaignId);
 		
 		List<Campaign> result = this.jdbcTemplate.query(query, parameters, new BeanPropertyRowMapper<Campaign>(Campaign.class));
@@ -88,7 +88,7 @@ public class CampaingPersistenceService {
 	 * @param userId
 	 * @return
 	 */
-	public ArrayList<Campaign> getAllCampaignsToUser(String userId){
+	public ArrayList<Campaign> getAllCampaigns(String userId){
 		
 		String query = "SELECT * FROM campaings WHERE user_id = ?";	
 		Object[] parameters = {userId};

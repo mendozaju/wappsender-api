@@ -6,26 +6,27 @@ package com.blue.wappsender.api.model.campaing;
  */
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
-import com.blue.wappsender.api.model.campaing.serializer.ActivationDateDeserializer;
 import com.blue.wappsender.api.model.campaing.serializer.ActivationDateSerializer;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class Campaign{
 
-	private int id;
+	private Integer id;
 	
-	private int userId;
+	private Integer userId;
 	
 	private String text;	
 	
 	private String description;
 	
+	private ArrayList<Destination> destinations;
+	
 	@JsonSerialize(using=ActivationDateSerializer.class)
 	private LocalDateTime activationDate;	
 
-	public int getId() {
+	public Integer getId() {
 		return id;
 	}
 
@@ -59,12 +60,20 @@ public class Campaign{
 		this.activationDate = activationDate;
 	}
 
-	public int getUserId() {
+	public Integer getUserId() {
 		return userId;
 	}
 
 	public void setUserId(int userId) {
 		this.userId = userId;
+	}
+
+	public ArrayList<Destination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(ArrayList<Destination> destinations) {
+		this.destinations = destinations;
 	}
 
 }
