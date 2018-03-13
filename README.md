@@ -14,7 +14,7 @@ Body example:
 	"activation_date":<Fecha de activacion de la campaña>
 }
 ```
-**Consideraciones**
+Consideraciones:
 >  El parametro *activation_date* indica la fecha en la que se va a enviar la campaña. El formato tien que ser **"YYYY-MM-dd hh:mm"** a modo de ejemplo: 2018-04-20 10:20"
 
 #### Consultar las campañas  
@@ -22,7 +22,7 @@ Permite obtener todas las campañas que se han dado de alta. La forma de consult
 *Metdodo:* GET  
 *Path:* /api/campaign
 
-**Consideraciones**
+Consideraciones:
 > - Es posible obtener los datos de una campaña en particular. Para esto hay que agregar el id de campaña al path _"/api/campaign/{campaignId}"_  
 - Es posible consultar una campaña con la totalidad de la informacion, es decir con los numeros destinos que tiene asigandos. Para esto se debe agregar el query param **"option"** con el valor **destinations** . A modo de ejemplo: _"/api/campaign?options=destinations"_
 
@@ -52,4 +52,4 @@ Es posible consultar los destinos que tiene cargados una campaña. Para esto se 
 
 ### Endpoint ###  
 Actualmente solo se consta de un solo endpoint.  
-> https://wappsender-api.herokuapp.com/ 
+> https://wappsender-api.herokuapp.com/
