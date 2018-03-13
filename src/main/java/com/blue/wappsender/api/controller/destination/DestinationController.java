@@ -36,6 +36,7 @@ public class DestinationController {
 	 * Agrega destinos de envio a una campaña
 	 * @return
 	 */
+	@CrossOrigin
 	@RequestMapping(path="/{campaingId}/destinations", method= RequestMethod.PATCH)
 	public ResponseEntity<BaseResponse> addDestinations(@Valid @RequestBody AddDestinationRequest request, @PathVariable(required=true) String campaingId) {
 		
@@ -53,6 +54,7 @@ public class DestinationController {
 	 * Obtiene los detinos para un id de capaña
 	 * @return
 	 */
+	@CrossOrigin
 	@RequestMapping(path="/{campaingId}/destinations", method=RequestMethod.GET)
 	public ResponseEntity<DestinationsResponse> getDestinations(@PathVariable(required=true) String campaingId){
 		log.info("Se atiende el pedido de obtencio de itinerairos para la campaña:[{}]", campaingId);

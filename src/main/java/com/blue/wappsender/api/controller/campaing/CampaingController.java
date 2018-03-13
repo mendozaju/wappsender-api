@@ -48,6 +48,7 @@ public class CampaingController {
 	 * @return
 	 */
 
+	@CrossOrigin
 	@RequestMapping(method = RequestMethod.POST, path = "/campaign")
 	public ResponseEntity<BaseResponse> saveCampaign(@Valid @RequestBody CampaignCreateRequest request) {
 
@@ -65,6 +66,7 @@ public class CampaingController {
 	 * 
 	 * @return
 	 */
+	@CrossOrigin
 	@RequestMapping(method = RequestMethod.GET, value = { "/campaign", "/campaign/{campaingId}" })
 	public ResponseEntity<CampaignsResponse> getCampaigns(@PathVariable(required = false) String campaingId,
 			@RequestParam(required = false, name = "options") String options) {
