@@ -2,6 +2,9 @@ package com.blue.wappsender.api.controller.destination.response;
 
 import java.util.ArrayList;
 
+import com.blue.wappsender.api.model.campaing.Destination;
+
+
 /**
  * Clase que representa la respuesta de destinos
  * @author jmendoza
@@ -9,19 +12,19 @@ import java.util.ArrayList;
  */
 public class DestinationsResponse {
 
-	private ArrayList<String> destinations;
+	private ArrayList<Destination> destinations;
 	private int quantity;
 	private int campaingId;
 
 	public DestinationsResponse() {
-		this.destinations = new ArrayList<String>();
+		this.destinations = new ArrayList<Destination>();
 	}
 
-	public ArrayList<String> getDestinations() {
+	public ArrayList<Destination> getDestinations() {
 		return destinations;
 	}
 
-	public void setDestinations(ArrayList<String> destinations) {
+	public void setDestinations(ArrayList<Destination> destinations) {
 		this.destinations = destinations;
 	}
 

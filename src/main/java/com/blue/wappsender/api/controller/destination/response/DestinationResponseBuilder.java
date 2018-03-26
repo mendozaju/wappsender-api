@@ -19,7 +19,7 @@ public class DestinationResponseBuilder {
 		
 		Iterator<Destination> it = destinations.iterator();
 		while(it.hasNext()) {
-			String number = it.next().getNumber();
+			Destination number = it.next();
 			response.getDestinations().add(number);
 		}
 		

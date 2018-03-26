@@ -25,6 +25,8 @@ import com.blue.wappsender.api.model.campaing.Destination;
  */
 @Repository
 public class DestinationsPersistenceService {
+	
+	//TODO: Se podria ver de pasar todas las sentencias a un builder de query
 
 	private static final Logger log = LoggerFactory.getLogger(DestinationsPersistenceService.class);
 
@@ -41,20 +43,20 @@ public class DestinationsPersistenceService {
 	 * @param destinations
 	 * @return
 	 */
-	public int addDestinationToCampaing(String campaingId, ArrayList<String> destinations) {
+	public int addDestinationToCampaing(Integer campaingId, ArrayList<Destination> destinations) {
 
 		StringBuilder queryBuilder = new StringBuilder(
 				"INSERT INTO campaing_destinations (number, campaign_id) VALUES ");
 		ArrayList<String> parameters = new ArrayList<String>();
 
-		Iterator<String> iterator = destinations.iterator();
+		Iterator<Destination> iterator = destinations.iterator();
 		
 		while(iterator.hasNext()) {
 			
-			String destination = iterator.next();
+			Destination destination = iterator.next();
 			queryBuilder.append("(?,?)");
-			parameters.add(destination);
-			parameters.add(campaingId);
+			parameters.add(destination.getNumber());
+			parameters.add(campaingId.toString());
 			if (parameters.size()/2 < destinations.size()) {
 				queryBuilder.append(",");
 			}			
@@ -104,6 +106,33 @@ public class DestinationsPersistenceService {
 		
 		List<Destination> result = this.jdbcTemplate.query(query.toString(),params.toArray(),new BeanPropertyRowMapper<Destination>(Destination.class));
 		return (ArrayList<Destination>) result;		
+	}
+
+	/**
+	 * Actualiza los destinos correspondientes a una campaña
+	 * @param campaignId
+	 * @param destinations
+	 */
+	public int updateDestinations(Integer campaignId, Destination destinations) {
+		String query = "UPDATE campaing_destinations SET number = ? WHERE id = ? AND campaign_id = ?";
+		Object[] params = {destinations.getNumber(), destinations.getId() , campaignId};
+		log.info("Se ejecuta la query :[{}] con los valores:[{}]", query, params);		
+		int result = this.jdbcTemplate.update(query,params);		
+		log.info("Se actualizaron [{}] registros",result);
+		return result;	
+	}
+	
+	/**
+	 * Elimina todos los destinatiarios de una campaña
+	 * @returns
+	 */
+	public int deleteAllDestinations(Integer campaignId) {		
+		String query = "DELETE from campaing_destinations WHERE campaign_id = ?";
+		Object[] params = {campaignId};
+		log.info("Se ejecuta la query :[{}] con los valores:[{}]", query, params);
+		int result = this.jdbcTemplate.update(query,params);
+		log.info("Se actualizaron [{}] registros",result);
+		return result;			
 	}
 
 }

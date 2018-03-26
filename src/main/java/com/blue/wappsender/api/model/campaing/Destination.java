@@ -1,14 +1,18 @@
 package com.blue.wappsender.api.model.campaing;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 /**
  * Clase que representa un destino
  * @author jmendoza
  *
  */
-public class Destination {
+public class Destination {	
 	
-	private String number;	
+	@JsonIgnore
 	private Integer campaignId;
+	private String number;	
+	private Integer id;
 
 	public String getNumber() {
 		return number;
@@ -24,6 +28,14 @@ public class Destination {
 
 	public void setCampaignId(Integer campaignId) {
 		this.campaignId = campaignId;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 

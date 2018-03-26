@@ -23,15 +23,16 @@ public class CampaignResponseBuilder {
 	 * @return
 	 */
 	public static ResponseEntity<BaseResponse> buildCreateCampaign(int createdCampaigns) {
-		BaseResponse response = new BaseResponse();
+		String code = "";
+		String description = "";
 		if(createdCampaigns > 0) {
-			response.setCode("OK");
-			response.setDescription("Se creo la campaña correctamente");
+			code = "OK";
+			description = "Se creo la campaña correctamente";
 		}else {
-			response.setCode("NOT_CREATED");
-			response.setDescription("No se pudo crear la campaña");
-		}
-		return ResponseEntity.ok(response);
+			code = "NOT_CREATED";
+			description = "No se pudo crear la campaña";
+		}		
+		return ResponseEntity.ok(new BaseResponse(code, description));
 	}
 	
 	/**
@@ -46,9 +47,7 @@ public class CampaignResponseBuilder {
 		});		
 		response.setQuantity(response.getCampaigns().size());		
 		response.setCode("OK");
-		response.setDescription("Se obtienen correctamente las campañas");
-		
-		new ResponseEntity<CampaignsResponse>(HttpStatus.ACCEPTED);
+		response.setDescription("Se obtienen correctamente las campañas");		
 		return ResponseEntity.ok(response);		
 	}
 

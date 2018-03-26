@@ -1,24 +1,22 @@
 package com.blue.wappsender.api.controller.destination.request;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.validation.constraints.NotNull;
 
 import com.blue.wappsender.api.model.campaing.Destination;
 
-/**
- * Calse que representa el request para agregar destinos a una campaña
- * @author jmendoza
- *
- */
-public class AddDestinationRequest {
+public class UpdateDestinationRequest {
+	
 	@NotNull
-	ArrayList<Destination> destinations;
-
-	public ArrayList<Destination> getDestinations() {
+	private List<Destination> destinations;
+	
+	public List<Destination> getDestinations() {
 		return destinations;
 	}
-
+	
 	public void setDestinations(ArrayList<Destination> destinations) {
 		this.destinations = destinations;
 	}

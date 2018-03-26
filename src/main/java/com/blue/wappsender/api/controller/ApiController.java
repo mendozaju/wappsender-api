@@ -12,12 +12,10 @@ import com.blue.wappsender.api.controller.healt.HealtResponse;
 @Controller
 public class ApiController {
 	
-	@RequestMapping(method=RequestMethod.GET, path="/api")
+	@RequestMapping(method = RequestMethod.GET, path = "/api")
 	@ResponseBody
 	public BaseResponse getStatus() {
-		BaseResponse result = new BaseResponse();
-		result.setCode("OK");
-		return result;
+		return new BaseResponse("OK","API");
 	}
 	
 	@CrossOrigin

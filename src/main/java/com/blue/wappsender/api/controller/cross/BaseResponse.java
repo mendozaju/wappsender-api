@@ -6,22 +6,30 @@ package com.blue.wappsender.api.controller.cross;
  *
  */
 public class BaseResponse {
-	private String code;
-	private String description;
-
+	protected String code;
+	protected String description;
+	
+	public BaseResponse() {};
+	
+	public BaseResponse(String code, String description) {
+		this.code = code;
+		this.description = description;
+	};
+	
 	public String getCode() {
 		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
 	}
 
 	public String getDescription() {
 		return description;
 	}
 
+	public void setCode(String code) {
+		this.code = code;
+	}
+
 	public void setDescription(String description) {
 		this.description = description;
-	}
+	}	
+	
 }
