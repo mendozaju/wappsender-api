@@ -1,7 +1,7 @@
 ## Agregar destinos a una campaña ##
 Dada una campaña, es posible agregar destinatarios. Estos seran los numeros de telefons a los que la campaña sera enviada. Las operaciones que se pueden realizar son las siguientes:
 
-* [Obtener todos los destinos de una campaña](####Obtener-todos-los-destinatarios-a una-campaña)
+* [Obtener todos los destinos de una campaña](#Obtener-todos-los-destinatarios-a una-campaña)
 * [Agregar un destinatario a una campaña](#agregar-un-destinatario-a-una-campaña)
 * [Actualizar un destinatario puntual](#actualizar-un-destinatario-puntual)
 * [Pisar todos los destinatarios](#pisar-todos-los-destinatarios)
