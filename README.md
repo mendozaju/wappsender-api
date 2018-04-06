@@ -2,6 +2,9 @@
 
 ### Funcionalidades ###
 
+* [Manejo de destinatarios](add-destinations.md)
+
+
 #### Generacion de campaña:  
 *Metodo:* POST  
 *Path:* /api/campaign  
