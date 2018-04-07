@@ -39,14 +39,14 @@ public class CampaingPersistenceService {
 	 * @return
 	 */
 	public int saveCampaing(Campaign campaing) {
- 		String query = "INSERT INTO campaings (text, description, activation_date, user_id) VALUES (?,?,?,?)";
+ 		String query = "INSERT INTO campaings (text, description, activation_date, user_id, status) VALUES (?,?,?,?, ?)";
 		log.info("Se ejecuta la query:[{}] con los valores: [{}] - [{}] - [{}]", query, campaing.getText(),
 				campaing.getDescription(), campaing.getActivationDate());
 		
 		//TODO: Ver que puede tirar un Runtime, agregar manejador general.
 		//TODO: Hay que colocar el userId que corresponde. Cuando se defina la autenticacion
 		int result = this.jdbcTemplate.update(query, campaing.getText(), campaing.getDescription(),
-				campaing.getActivationDate(),1);
+				campaing.getActivationDate(),1, CampaingStatus.PENDING.toString());
 		
 		log.info("Se actualizaron [{}] registros",result);
 		return result;

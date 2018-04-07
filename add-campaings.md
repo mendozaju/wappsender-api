@@ -1,7 +1,7 @@
 
 #### Generacion de campaña:  
 *Metodo:* POST  
-*Path:* /api/campaign  
+*Path:* /api/campaing  
 
 Body example:
 ```javascript
