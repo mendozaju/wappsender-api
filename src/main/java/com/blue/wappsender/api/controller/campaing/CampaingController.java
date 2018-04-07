@@ -81,7 +81,7 @@ public class CampaingController {
 
 		// TODO: Hoy en dia se hace uso de un USR_ID generico, esto despues tiene que
 		// salir de la autenticacion:
-		String mockUserId = "0";
+		String mockUserId = "1";
 
 		if (splitedOptions.contains(Options.DESTINATIONS.description())) {
 			if (campaingId != null) {
