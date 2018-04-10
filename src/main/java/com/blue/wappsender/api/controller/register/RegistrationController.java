@@ -30,7 +30,8 @@ public class RegistrationController {
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/registration")
 	public ResponseEntity<String> sendRegistrationMessage(@Valid @RequestBody RegisterRequest registerRequest) throws IOException {
-		log.info("Se atiende el pedido de envio de mensaje de registracion para el telefono:[{}]",registerRequest.getPhone());		
+		log.info("Se atiende el pedido de envio de mensaje de registracion para el telefono:[{}]",registerRequest.getPhone());	
+		log.info("Endpoint de consulta:[{}]", ENDPOINT);
 
 		ClientHttpRequestFactory requestFactory = getClientHttpRequestFactory();
 		RestTemplate restTemplate = new RestTemplate(requestFactory);	
