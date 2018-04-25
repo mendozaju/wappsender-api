@@ -8,7 +8,9 @@ package com.blue.wappsender.api.model.campaing;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
+import com.blue.wappsender.api.model.campaing.serializer.ActivationDateDeserializer;
 import com.blue.wappsender.api.model.campaing.serializer.ActivationDateSerializer;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 public class Campaign{
@@ -24,6 +26,7 @@ public class Campaign{
 	private ArrayList<Destination> destinations;
 	
 	@JsonSerialize(using=ActivationDateSerializer.class)
+	@JsonDeserialize(using=ActivationDateDeserializer.class)
 	private LocalDateTime activationDate;	
 
 	public Integer getId() {

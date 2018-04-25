@@ -1,6 +1,5 @@
 package com.blue.wappsender.api.controller.destination.request;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 

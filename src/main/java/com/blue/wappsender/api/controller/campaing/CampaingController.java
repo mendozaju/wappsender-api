@@ -56,9 +56,13 @@ public class CampaingController {
 		// TODO: mapear los errores SQL
 
 		Campaign campaign = CampaignModelBuilder.build(request);
-		int result = this.campaingPresistence.saveCampaing(campaign);
-		return CampaignResponseBuilder.buildCreateCampaign(result);
-
+		int campaignId = this.campaingPresistence.saveCampaing(campaign);
+		
+		if(!request.getDestinations().isEmpty()) {
+			log.info("La campaña pose destinos, se procede a agregarlos");
+			this.destinationPersistence.addDestinationToCampaing(campaignId, request.getDestinations());
+		}		
+		return CampaignResponseBuilder.buildCreateCampaign(campaignId);
 	}
 
 	/**

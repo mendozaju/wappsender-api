@@ -1,5 +1,11 @@
 package com.blue.wappsender.api.service.persistence;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,9 +17,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.blue.wappsender.api.model.campaing.Campaign;
+import com.blue.wappsender.core.formats.DateFormatter;
 
 /**
  * Servicio encargado de persistir y consultar las campañas
@@ -36,7 +46,7 @@ public class CampaingPersistenceService {
 	 * Guarda una campaña
 	 * 
 	 * @param campaing
-	 * @return
+	 * @return Retorna el id de la campaña insertada
 	 */
 	public int saveCampaing(Campaign campaing) {
  		String query = "INSERT INTO campaings (text, description, activation_date, user_id, status) VALUES (?,?,?,?, ?)";
@@ -45,11 +55,17 @@ public class CampaingPersistenceService {
 		
 		//TODO: Ver que puede tirar un Runtime, agregar manejador general.
 		//TODO: Hay que colocar el userId que corresponde. Cuando se defina la autenticacion
+		/*
 		int result = this.jdbcTemplate.update(query, campaing.getText(), campaing.getDescription(),
 				campaing.getActivationDate(),1, CampaingStatus.PENDING.toString());
+		*/
+		KeyHolder holder = new GeneratedKeyHolder();
+		Object[] parameters = {campaing.getText(), campaing.getDescription(),campaing.getActivationDate(),1,CampaingStatus.PENDING.toString()};
+		int result = this.jdbcTemplate.update(this.updateAndReturn(query, parameters),holder);
+		int campaignId = holder.getKey().intValue();
 		
-		log.info("Se actualizaron [{}] registros",result);
-		return result;
+		log.info("Se actualizaron [{}] registros - id generado:[{}]",result, campaignId);
+		return campaignId;
 
 	}
 
@@ -98,5 +114,42 @@ public class CampaingPersistenceService {
 		return (ArrayList<Campaign>) result;
 		
 	}
+	
+	
+	private PreparedStatementCreator updateAndReturn(String query, Object[] parameters) {
+		return new PreparedStatementCreator() {
+			/*
+			@Override
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(INSERT_SQL, Statement.RETURN_GENERATED_KEYS);
+				ps.setString(1, user.getName());
+				ps.setString(2, user.getAddress());
+				ps.setString(3, user.getEmail());
+				return ps;
+			}
+			*/
+
+			@Override
+			public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
+				PreparedStatement ps = connection.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+				
+				for (int i = 1; i <= parameters.length; i++) {
+					Object aParameter = parameters[i-1];
+					
+					if(aParameter.getClass().equals(LocalDateTime.class)) {
+						ps.setString(i, ((LocalDateTime) aParameter).format( DateTimeFormatter.ofPattern(DateFormatter.pattern())));
+					}else {
+						ps.setString(i, aParameter.toString());
+					}
+					
+				}
+				
+				return ps;
+			}
+		};
+	}
+	
+	
+	
 
 }

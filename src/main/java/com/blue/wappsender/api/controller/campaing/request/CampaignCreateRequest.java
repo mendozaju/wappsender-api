@@ -1,9 +1,11 @@
 package com.blue.wappsender.api.controller.campaing.request;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.blue.wappsender.api.model.campaing.Destination;
 import com.blue.wappsender.api.model.campaing.serializer.ActivationDateDeserializer;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 
@@ -25,6 +27,8 @@ public class CampaignCreateRequest {
 
 	@JsonDeserialize(using = ActivationDateDeserializer.class)
 	private LocalDateTime activationDate;
+	
+	private ArrayList<Destination> destinations;
 
 	public int getId() {
 		return id;
@@ -56,6 +60,14 @@ public class CampaignCreateRequest {
 
 	public void setActivationDate(LocalDateTime activationDate) {
 		this.activationDate = activationDate;
+	}
+
+	public ArrayList<Destination> getDestinations() {
+		return destinations;
+	}
+
+	public void setDestinations(ArrayList<Destination> destinations) {
+		this.destinations = destinations;
 	}
 
 }

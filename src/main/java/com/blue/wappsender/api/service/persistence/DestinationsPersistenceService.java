@@ -46,7 +46,7 @@ public class DestinationsPersistenceService {
 	public int addDestinationToCampaing(Integer campaingId, ArrayList<Destination> destinations) {
 
 		StringBuilder queryBuilder = new StringBuilder(
-				"INSERT INTO campaing_destinations (number, campaign_id) VALUES ");
+				"INSERT INTO campaing_destinations (phone, campaign_id, first_name, last_name) VALUES ");
 		ArrayList<String> parameters = new ArrayList<String>();
 
 		Iterator<Destination> iterator = destinations.iterator();
@@ -54,10 +54,12 @@ public class DestinationsPersistenceService {
 		while(iterator.hasNext()) {
 			
 			Destination destination = iterator.next();
-			queryBuilder.append("(?,?)");
-			parameters.add(destination.getNumber());
+			queryBuilder.append("(?,?,?,?)");
+			parameters.add(destination.getPhone());
 			parameters.add(campaingId.toString());
-			if (parameters.size()/2 < destinations.size()) {
+			parameters.add(destination.getFirstName());
+			parameters.add(destination.getLastName());
+			if (parameters.size()/4 < destinations.size()) {
 				queryBuilder.append(",");
 			}			
 		}		
@@ -111,11 +113,11 @@ public class DestinationsPersistenceService {
 	/**
 	 * Actualiza los destinos correspondientes a una campaña
 	 * @param campaignId
-	 * @param destinations
+	 * @param destination
 	 */
-	public int updateDestinations(Integer campaignId, Destination destinations) {
-		String query = "UPDATE campaing_destinations SET number = ? WHERE id = ? AND campaign_id = ?";
-		Object[] params = {destinations.getNumber(), destinations.getId() , campaignId};
+	public int updateDestinations(Integer campaignId, Destination destination) {
+		String query = "UPDATE campaing_destinations SET phone = ?, first_name= ?, last_name = ? WHERE id = ? AND campaign_id = ?";
+		Object[] params = {destination.getPhone(),destination.getFirstName(),destination.getLastName(), destination.getId() , campaignId};
 		log.info("Se ejecuta la query :[{}] con los valores:[{}]", query, params);		
 		int result = this.jdbcTemplate.update(query,params);		
 		log.info("Se actualizaron [{}] registros",result);

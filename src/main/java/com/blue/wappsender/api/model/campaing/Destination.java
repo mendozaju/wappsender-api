@@ -11,15 +11,17 @@ public class Destination {
 	
 	@JsonIgnore
 	private Integer campaignId;
-	private String number;	
+	private String phone;	
+	private String firstName;
+	private String lastName;
 	private Integer id;
 
-	public String getNumber() {
-		return number;
+	public String getPhone() {
+		return phone;
 	}
 
-	public void setNumber(String number) {
-		this.number = number;
+	public void setPhone(String number) {
+		this.phone = number;
 	}
 
 	public Integer getCampaignId() {
@@ -36,6 +38,22 @@ public class Destination {
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public String getFirstName() {
+		return firstName;
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
 	}
 
 
