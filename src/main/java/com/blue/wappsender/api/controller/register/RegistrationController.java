@@ -25,7 +25,7 @@ public class RegistrationController {
 	
 	private static final Logger log = LoggerFactory.getLogger(RegistrationController.class);
 	
-	private final String ENDPOINT = "https://eu2.chat-api.com/instance1501/message?token=tc4pie3fc6o5c24s";
+	private final String ENDPOINT = "https://eu3.chat-api.com/instance2008/message?token=cfx30u0rcask9hr1";
 	private final String MESSAGE_TEMPLATE = "*Hola %s!* Ya estas registrado para recibir alertas sobre los siguientes temas de interes: ";
 	
 	@RequestMapping(method = RequestMethod.POST, path = "/registration")
