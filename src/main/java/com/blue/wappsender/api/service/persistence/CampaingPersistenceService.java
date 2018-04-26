@@ -78,7 +78,7 @@ public class CampaingPersistenceService {
 		
 		String query = "SELECT * FROM campaings WHERE id = ? AND user_id = ?";		
 		Object[] parameters = {campaignId, userId};
-		log.info("Se ejecuta la query:[{}] con los valores: [{}] - [{}] - [{}]", query, campaignId);
+		log.info("Se ejecuta la query:[{}] con los valores: [{}] - [{}] - [{}]", query, parameters);
 		
 		List<Campaign> result = this.jdbcTemplate.query(query, parameters, new BeanPropertyRowMapper<Campaign>(Campaign.class));
 		return (ArrayList<Campaign>) result;
@@ -137,7 +137,7 @@ public class CampaingPersistenceService {
 					Object aParameter = parameters[i-1];
 					
 					if(aParameter.getClass().equals(LocalDateTime.class)) {
-						ps.setString(i, ((LocalDateTime) aParameter).format( DateTimeFormatter.ofPattern(DateFormatter.pattern())));
+						ps.setString(i, ((LocalDateTime) aParameter).format( DateTimeFormatter.ofPattern(DateFormatter.internalPattern())));
 					}else {
 						ps.setString(i, aParameter.toString());
 					}
