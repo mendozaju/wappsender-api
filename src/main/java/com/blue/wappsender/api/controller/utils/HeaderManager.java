@@ -2,7 +2,7 @@ package com.blue.wappsender.api.controller.utils;
 
 import org.springframework.util.LinkedMultiValueMap;
 
-import com.blue.wappsender.api.model.user.AccessKey;
+import com.blue.wappsender.api.model.user.acces.AccessKey;
 
 /**
  * Clase responsabel de manejar las cokies

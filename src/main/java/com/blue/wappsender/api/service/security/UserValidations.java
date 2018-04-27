@@ -17,8 +17,12 @@ public class UserValidations {
 	 * @param user
 	 * @return
 	 */
-	public boolean isValidPassword(User user) {
-		return true;
+	public boolean isValidPassword(User user, String password) {
+		//TODO: ver el tema de la encriptacion
+		if(user.getPassword() != null && user.getPassword().equals(password)) {
+			return true;
+		}
+		return false;
 	}
 
 }
